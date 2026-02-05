@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
   templateUrl: './page-header.component.html',
-  styleUrls: ['./page-header.component.scss']
+  styleUrls: ['./page-header.component.scss'],
 })
-export class PageHeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class PageHeaderComponent {
+  @Input() title: string = '';
 }

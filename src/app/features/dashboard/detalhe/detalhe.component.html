@@ -1,1 +1,38 @@
-<p>detalhe works!</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    Detalhe: <span class="text-primary">{{ venda?.produto }}</span>
+  </h4>
+  <button
+    type="button"
+    class="close pull-right"
+    (click)="bsModalRef.hide()"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body" *ngIf="venda">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <strong>Produto:</strong>
+      <span>{{ venda.produto }}</span>
+    </li>
+    <li class="list-group-item">
+      <strong>Quantidade Total:</strong>
+      <span>{{ venda.quantidadeTotal }} unidades</span>
+    </li>
+    <li class="list-group-item">
+      <strong>Valor Total:</strong>
+      <span class="text-success font-weight-bold">{{
+        venda.valorTotal | currency: "BRL"
+      }}</span>
+    </li>
+  </ul>
+</div>
+
+<div class="modal-footer bg-light">
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+    Fechar
+  </button>
+</div>

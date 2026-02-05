@@ -1,1 +1,12 @@
-<p>upload works!</p>
+<div class="mt-3">
+  <label class="btn btn-primary shadow-sm">
+    <i class="pi pi-upload"></i>
+    <span>Carregar CSV</span>
+
+    <input type="file" hidden (change)="onFileSelected($event)" accept=".csv" />
+  </label>
+
+  <small class="text-muted">
+    <i class="pi pi-info-circle"></i> Selecione o arquivo csv
+  </small>
+</div>

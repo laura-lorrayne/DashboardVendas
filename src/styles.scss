@@ -1,18 +1,40 @@
-/* 1. PrimeNG - Tema e Core */
-/* ALTERADO: Usando 'bootstrap4-light-blue' que aparece na sua imagem */
 @import "~primeng/resources/themes/bootstrap4-light-blue/theme.css";
 @import "~primeng/resources/primeng.min.css";
 @import "~primeicons/primeicons.css";
 
-/* 2. Bootstrap */
-/* O til (~) é essencial para achar a pasta node_modules */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-/* 3. Estilos Globais */
-html,
-body {
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  background-color: #f8f9fa;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-success {
+  color: #22c55e;
+}
+
+.text-muted {
+  color: #64748b;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: #0f172a;
 }
