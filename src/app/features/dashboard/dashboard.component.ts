@@ -129,6 +129,10 @@ export class DashboardComponent implements OnInit {
   limparDados() {
     localStorage.removeItem('ultimo_csv');
     this.vendas = [];
+    this.reloadPagina();
+  }
+
+  reloadPagina() {
     window.location.reload();
   }
 }
