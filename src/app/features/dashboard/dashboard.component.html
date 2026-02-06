@@ -1,25 +1,50 @@
-<div class="container mt-4 dashboard-container">
-  <app-page-header title="Dashboard de Vendas"></app-page-header>
+<div
+  class="container mt-4 dashboard-container"
+  role="main"
+  aria-labelledby="titulo-dashboard"
+>
+  <app-page-header
+    id="titulo-dashboard"
+    title="Dashboard de Vendas"
+  ></app-page-header>
 
   <div class="row">
     <div class="col-12">
-      <div class="upload-container">
+      <div class="upload-container" aria-label="Área de envio de arquivo CSV">
         <app-upload
           (dadosCarregados)="aoReceberDados($event)"
           (erroUpload)="aoReceberErro($event)"
+          aria-label="Componente de upload de arquivo CSV"
         ></app-upload>
       </div>
     </div>
   </div>
 
-  <div class="row" *ngIf="vendas.length > 0">
+  <div
+    class="row"
+    *ngIf="vendas.length > 0"
+    aria-live="polite"
+    aria-relevant="additions"
+  >
     <div class="col-lg-7 mb-4">
-      <div class="card p-3 shadow-sm border-0 mb-4">
-        <p class="label">Total Geral</p>
-        <h3 class="value success">{{ totalGeral | currencyBr }}</h3>
+      <div
+        class="card p-3 shadow-sm border-0 mb-4"
+        role="region"
+        aria-labelledby="total-geral"
+      >
+        <p class="label" id="total-geral">Total Geral</p>
+        <h3 class="value success" aria-live="polite">
+          {{ totalGeral | currencyBr }}
+        </h3>
       </div>
 
-      <div class="table-section p-0 overflow-hidden shadow-sm">
+      <div
+        class="table-section p-0 overflow-hidden shadow-sm"
+        role="region"
+        aria-labelledby="titulo-tabela"
+      >
+        <p id="titulo-tabela" class="sr-only">Tabela de vendas por produto</p>
+
         <p-table
           [value]="vendas"
           [paginator]="true"
@@ -27,16 +52,18 @@
           [globalFilterFields]="['produto']"
           #dt
           styleClass="p-datatable-sm p-datatable-striped"
+          aria-label="Tabela de vendas por produto"
         >
           <ng-template pTemplate="caption">
             <div class="search-bar border-0">
               <span class="p-input-icon-left w-100">
-                <i class="pi pi-search"></i>
+                <i class="pi pi-search" aria-hidden="true"></i>
                 <input
                   type="text"
                   pInputText
-                  placeholder="Buscar produto..."
+                  placeholder="Buscar produto"
                   class="search-input"
+                  aria-label="Buscar produto pelo nome"
                   (input)="
                     dt.filterGlobal($any($event.target).value, 'contains')
                   "
@@ -47,16 +74,16 @@
 
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="produto">
+              <th scope="col" pSortableColumn="produto">
                 Produto <p-sortIcon field="produto"></p-sortIcon>
               </th>
-              <th pSortableColumn="quantidadeTotal">
-                Qtd <p-sortIcon field="quantidadeTotal"></p-sortIcon>
+              <th scope="col" pSortableColumn="quantidadeTotal">
+                Quantidade <p-sortIcon field="quantidadeTotal"></p-sortIcon>
               </th>
-              <th pSortableColumn="valorTotal">
+              <th scope="col" pSortableColumn="valorTotal">
                 Valor <p-sortIcon field="valorTotal"></p-sortIcon>
               </th>
-              <th>Ações</th>
+              <th scope="col">Ações</th>
             </tr>
           </ng-template>
 
@@ -83,13 +110,12 @@
         <p class="label">Produto Mais Vendido</p>
         <h3 class="value">{{ produtoMaisVendido }}</h3>
       </div>
-
       <div
         class="chart-card shadow-sm border-0 p-3 flex-grow-1 d-flex flex-column"
       >
         <h3 class="mb-4" style="font-size: 1.1rem">Vendas por Produto</h3>
 
-        <div class="chart-wrapper w-100 flex-grow-1">
+        <div class="chart-wrapper w-100 flex-grow-1" aria-hidden="true">
           <p-chart
             type="bar"
             [data]="chartData"
@@ -97,6 +123,29 @@
             height="100%"
             width="100%"
           ></p-chart>
+        </div>
+
+        <div class="visually-hidden">
+          <table
+            summary="Tabela detalhada representando os dados do gráfico de barras de vendas por produto"
+          >
+            <caption>
+              Dados de Vendas por Produto
+            </caption>
+
+            <thead>
+              <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade Vendida</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of vendas">
+                <td>{{ item.produto }}</td>
+                <td>{{ item.quantidadeTotal }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -1,34 +1,39 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">
+  <h2 class="modal-title pull-left" id="modal-title">
     Detalhe: <span class="text-primary">{{ venda?.produto }}</span>
-  </h4>
+  </h2>
+
   <button
     type="button"
     class="close pull-right"
     (click)="bsModalRef.hide()"
-    aria-label="Close"
+    aria-label="Fechar janela de detalhes"
   >
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
 <div class="modal-body" *ngIf="venda">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <strong>Produto:</strong>
-      <span>{{ venda.produto }}</span>
-    </li>
-    <li class="list-group-item">
-      <strong>Quantidade Total:</strong>
-      <span>{{ venda.quantidadeTotal }} unidades</span>
-    </li>
-    <li class="list-group-item">
-      <strong>Valor Total:</strong>
-      <span class="text-success font-weight-bold">{{
-        venda.valorTotal | currency: "BRL"
-      }}</span>
-    </li>
-  </ul>
+  <dl class="list-group list-group-flush m-0">
+    <div class="list-group-item">
+      <dt class="d-inline font-weight-bold">Produto:</dt>
+      <dd class="d-inline m-0 ps-1">{{ venda.produto }}</dd>
+    </div>
+
+    <div class="list-group-item">
+      <dt class="d-inline font-weight-bold">Quantidade Total:</dt>
+      <dd class="d-inline m-0 ps-1">{{ venda.quantidadeTotal }} unidades</dd>
+    </div>
+
+    <div class="list-group-item">
+      <dt class="d-inline font-weight-bold">Valor Total:</dt>
+      <dd class="d-inline m-0 ps-1 text-success font-weight-bold">
+        <span [attr.aria-label]="venda.valorTotal | currency: 'BRL'">
+          {{ venda.valorTotal | currency: "BRL" }}
+        </span>
+      </dd>
+    </div>
+  </dl>
 </div>
 
 <div class="modal-footer bg-light">
