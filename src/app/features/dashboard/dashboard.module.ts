@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DashboardRoutingModule } from './dashboard-routing.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -15,6 +14,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { UploadComponent } from './upload/upload.component';
 import { DetalheComponent } from './detalhe/detalhe.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { DetalheComponent } from './detalhe/detalhe.component';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    AppRoutingModule,
     FormsModule,
     TableModule,
     ChartModule,
